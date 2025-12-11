@@ -1,0 +1,30 @@
+name: 'ZHT's greet Action'
+description: 'input your name and output the greet + time'
+author: 'rikkachan20020516-wq'
+
+inputs:
+  name:
+    description: 'wanna greet to'
+    required: true
+    default: '趙涵廷'
+
+outputs:
+  timestamp:
+    description: 'Time'
+    value: ${{ steps.time.outputs.time }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: time
+      run: echo "time=$(date '+%Y年%m月%d日 %H:%M:%S')" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: greet
+      run: |
+        echo "=========================================="
+        echo "Hello！${{ inputs.name }} ！"
+        echo "Now is：${{ steps.time.outputs.time }}"
+        echo "Custom Action from ZHT！"
+        echo "=========================================="
+      shell: bash
