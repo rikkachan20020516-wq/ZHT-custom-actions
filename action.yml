@@ -9,22 +9,10 @@ inputs:
     default: '趙涵廷'
 
 outputs:
-  timestamp:
-    description: 'Time'
-    value: ${{ steps.time.outputs.time }}
+  emoji:
+    description: "Random emoji"
+    value: ${{ steps.random.output.emoji }}
 
 runs:
-  using: 'composite'
-  steps:
-    - id: time
-      run: echo "time=$(date '+%Y年%m月%d日 %H:%M:%S')" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - name: greet
-      run: |
-        echo "=========================================="
-        echo "Hello！${{ inputs.name }} ！"
-        echo "Now is：${{ steps.time.outputs.time }}"
-        echo "Custom Action from ZHT！"
-        echo "=========================================="
-      shell: bash
+  using: "node20"
+  main: "index.js"
