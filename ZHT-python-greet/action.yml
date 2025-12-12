@@ -1,0 +1,19 @@
+name: "ZHT Python Greet (Docker Action)"
+description: "Greet in docker by python"
+author: "rikkachan20020516-wq"
+
+inputs:
+  name:
+    description: "wanna greet to"
+    required: true
+    default: "World"
+
+outputs:
+  blessing:
+    description: "Random blessing"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.name }}
