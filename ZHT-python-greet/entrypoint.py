@@ -22,4 +22,5 @@ print(f"    Tokyo time now：{tokyo_time}")
 print(f"    Blessing：{blessing}")
 print("="*50 + "\n")
 
-print(f"::set-output name=blessing::{blessing}")
+with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+    f.write(f"blessing={blessing}\n")
